@@ -42,7 +42,7 @@
   <child link="torso" />
   <origin rpy="0 0 0" xyz="0.0 0.0 0.1" />
   <axis xyz="0 1 0" />
-  <limit lower="-1.00" upper="0.00" effort="0.5293" velocity="6.159937255" />
+  <limit lower="0.00" upper="0.00" effort="0.5293" velocity="6.159937255" />
  </joint>
 
  <!--torso-->
@@ -75,7 +75,7 @@
   <child link="lower_arm" />
   <origin rpy="0 0 0" xyz="0.0 -0.2 0.1" />
   <axis xyz="0 1 0" />
-  <limit lower="-0.00" upper="2.00" effort="0.5293" velocity="6.159937255" />
+  <limit lower="-1.00" upper="0.00" effort="0.5293" velocity="6.159937255" />
  </joint>
 
 <!--add-->
@@ -110,7 +110,7 @@
   <child link="upper_arm" />
   <origin rpy="0 0 0" xyz="0.0 0.2 2.35" />
   <axis xyz="0 1 0" />
-  <limit lower="-0.00" upper="2.00" effort="0.5293" velocity="6.159937255" />
+  <limit lower="0.00" upper="2.00" effort="0.5293" velocity="6.159937255" />
  </joint>
 
 <!--add-->
@@ -139,5 +139,77 @@
    <inertia ixx="0.01396" iyy="0.01396" izz="0.00125" ixy="0" ixz="0" iyz="0" />
   </inertial>
  </link>
+  
+ <!--add-->
+  
+ <!--torso and lowerarm connect joint-->
+ <joint name="wrist" type="revolute">
+  <parent link="upper_arm" />
+  <child link="hand" />
+  <origin rpy="0 0 0" xyz="0.0 -0.2 2.4" />
+  <axis xyz="0 1 0" />
+  <limit lower="0.00" upper="0.00" effort="0.5293" velocity="6.159937255" />
+ </joint>
+  
+ <!--hand-->
+ <link name="hand">
+  <!--visualize-->
+  <visual>
+   <geometry>
+    <cylinder length="0.2" radius="0.1" />
+   </geometry>
+   <material name="white" />
+   <origin rpy="0 0 0" xyz="0 0 0.1" />
+  </visual>
+  <!--collisionattribute-->
+  <collision>
+   <geometry>
+    <cylinder length="0.2" radius="0.1" />
+   </geometry>
+   <origin rpy="0 0 0" xyz="0 0.2 0.1" />
+  </collision>
+  <!--inertialattribute-->
+  <inertial>
+   <mass value="1.0" />
+   <origin rpy="0 0 0" xyz="0 0 0.1" />
+   <inertia ixx="0.02146" iyy="0.02146" izz="0.00125" ixy="0" ixz="0" iyz="0" />
+  </inertial>
+ </link>
+ <!--baselink and torso connect joint-->
+ <joint name="on_hand" type="revolute">
+  <parent link="hand" />
+  <child link="on_hand" />
+  <origin rpy="0 0 0" xyz="0.0 0.0 0.2" />
+  <axis xyz="0 1 0" />
+  <limit lower="0.00" upper="0.00" effort="0.5293" velocity="6.159937255" />
+ </joint>
+  
+  <!--on_hand-->
+ <link name="on_hand">
+  <!--visualize-->
+  <visual>
+   <geometry>
+    <box size="0.4 0.4 0.1" />
+   </geometry>
+   <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0" />
+   </material>
+   <origin rpy="0 0 0" xyz="0 0 0.05" />
+  </visual>
+  <!--collisionattribute-->
+  <collision>
+   <geometry>
+    <box size="0.4 0.4 0.1" />
+   </geometry>
+   <origin rpy="0 0 0" xyz="0 0 0.05" />
+  </collision>
+  <!--inertialattribute-->
+  <inertial>
+   <mass value="1.0" />
+   <origin rpy="0 0 0" xyz="0 0 0.05" />
+   <inertia ixx="0.00354" iyy="0.00354" izz="0.00667" ixy="0" ixz="0" iyz="0" />
+  </inertial>
+ </link>
+
 
 </robot>
