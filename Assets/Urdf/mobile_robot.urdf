@@ -138,7 +138,7 @@
   </joint>
 
   <!--setting powered by sensor-->
-    <link name="sensor_link">
+    <link name="base_scan">
       <!--visualize-->
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -165,7 +165,7 @@
       <axis xyz="0 1 0"/>
       <origin xyz="0 0 0.2" rpy="0 0 0"/>
       <parent link="base_link"/>
-      <child link="sensor_link"/>
+      <child link="base_scan"/>
     </joint>
 
 </robot>
