@@ -1720,7 +1720,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1530617485}
         m_TargetAssemblyTypeName: TrajectoryPlanner, Assembly-CSharp
         m_MethodName: Publish
         m_Mode: 1
