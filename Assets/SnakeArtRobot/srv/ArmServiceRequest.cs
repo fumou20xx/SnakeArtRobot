@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
+using RosMessageTypes.MyRobotArmServiceTest;
 
 namespace RosMessageTypes.SnakeArtRobot
 {
