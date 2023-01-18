@@ -57,6 +57,7 @@ public void Publish()
         }
     }
 
+
     IEnumerator ExecuteTrajectories(MoverServiceResponse response)
     {
         foreach (var t in response.trajectory.joint_trajectory.points)

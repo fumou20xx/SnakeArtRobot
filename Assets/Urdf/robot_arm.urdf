@@ -42,7 +42,7 @@
   <child link="torso" />
   <origin rpy="0 0 0" xyz="0.0 0.0 0.1" />
   <axis xyz="0 1 0" />
-  <limit lower="-1.00" upper="0.00" effort="0.5293" velocity="6.159937255" />
+  <limit lower="-0.00" upper="0.00" effort="0.5293" velocity="6.159937255" />
  </joint>
 
  <!--torso-->
@@ -75,7 +75,7 @@
   <child link="lower_arm" />
   <origin rpy="0 0 0" xyz="0.0 -0.2 0.1" />
   <axis xyz="0 1 0" />
-  <limit lower="-0.00" upper="2.00" effort="0.5293" velocity="6.159937255" />
+  <limit lower="-1.00" upper="0.00" effort="0.5293" velocity="6.159937255" />
  </joint>
 
 <!--add-->
