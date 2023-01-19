@@ -10,6 +10,7 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 /[Aa]ssets/AzureKinectExamples/
+/AzureKinectExamples/
 /*.dll
 /*.onnx
 
