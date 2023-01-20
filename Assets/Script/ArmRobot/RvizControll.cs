@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Robotics.ROSTCPConnector;
+using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using JointStateMsg = RosMessageTypes.Sensor.JointStateMsg;
 
 public class RvizControll : MonoBehaviour
@@ -24,6 +25,7 @@ public class RvizControll : MonoBehaviour
 
         ros = ROSConnection.GetOrCreateInstance();
         ros.Subscribe<JointStateMsg>("/move_group/fake_controller_joint_states", Callback);
+        
     }
 
     void Callback(JointStateMsg msg)
