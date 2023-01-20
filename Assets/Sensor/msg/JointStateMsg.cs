@@ -9,7 +9,7 @@ using RosMessageTypes.Std;
 namespace RosMessageTypes.Sensor
 {
     [Serializable]
-    public class JointStateMsg : Message
+    public class SensorJointStateMsg : Message
     {
         public const string k_RosMessageName = "sensor_msgs/JointState";
         public override string RosMessageName => k_RosMessageName;
@@ -38,7 +38,7 @@ namespace RosMessageTypes.Sensor
         public double[] velocity;
         public double[] effort;
 
-        public JointStateMsg()
+        public SensorJointStateMsg()
         {
             this.header = new HeaderMsg();
             this.name = new string[0];
@@ -47,7 +47,7 @@ namespace RosMessageTypes.Sensor
             this.effort = new double[0];
         }
 
-        public JointStateMsg(HeaderMsg header, string[] name, double[] position, double[] velocity, double[] effort)
+        public SensorJointStateMsg(HeaderMsg header, string[] name, double[] position, double[] velocity, double[] effort)
         {
             this.header = header;
             this.name = name;
@@ -56,9 +56,9 @@ namespace RosMessageTypes.Sensor
             this.effort = effort;
         }
 
-        public static JointStateMsg Deserialize(MessageDeserializer deserializer) => new JointStateMsg(deserializer);
+        public static JointStateMsg Deserialize(MessageDeserializer deserializer) => new SensorJointStateMsg(deserializer);
 
-        private JointStateMsg(MessageDeserializer deserializer)
+        private SensorJointStateMsg(MessageDeserializer deserializer)
         {
             this.header = HeaderMsg.Deserialize(deserializer);
             deserializer.Read(out this.name, deserializer.ReadLength());
