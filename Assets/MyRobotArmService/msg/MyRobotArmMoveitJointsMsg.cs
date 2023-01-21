@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.SnakeArtRobotArm
+namespace RosMessageTypes.MyRobotArmService
 {
     [Serializable]
     public class MyRobotArmMoveitJointsMsg : Message
     {
-        public const string k_RosMessageName = "snake_art_robot_arm/MyRobotArmMoveitJoints";
+        public const string k_RosMessageName = "my_robot_arm_service/MyRobotArmMoveitJoints";
         public override string RosMessageName => k_RosMessageName;
 
         public double[] joints;
@@ -18,7 +18,7 @@ namespace RosMessageTypes.SnakeArtRobotArm
 
         public MyRobotArmMoveitJointsMsg()
         {
-            this.joints = new double[4];
+            this.joints = new double[5];
             this.goal_pose = new Geometry.PoseMsg();
         }
 
@@ -32,7 +32,7 @@ namespace RosMessageTypes.SnakeArtRobotArm
 
         private MyRobotArmMoveitJointsMsg(MessageDeserializer deserializer)
         {
-            deserializer.Read(out this.joints, sizeof(double), 4);
+            deserializer.Read(out this.joints, sizeof(double), 5);
             this.goal_pose = Geometry.PoseMsg.Deserialize(deserializer);
         }
 

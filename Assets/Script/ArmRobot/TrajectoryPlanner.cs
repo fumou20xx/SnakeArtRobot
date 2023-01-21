@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using RosMessageTypes.Geometry;
-using RosMessageTypes.MyRobotArmServiceTest;
+using RosMessageTypes.MyRobotArmService;
 using RosMessageTypes.Trajectory;
 using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
@@ -14,7 +14,7 @@ public class TrajectoryPlanner : MonoBehaviour
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
     public ArticulationBody[] jointArticulationBodies;
-    public GameObject goal;
+//    public GameObject goal;
     private ROSConnection rc;
 
     void Start()
@@ -29,17 +29,18 @@ public void Publish()
         var request = new MoverServiceRequest();
 
         var joints = new MyRobotArmMoveitJointsMsg();
+
         for(var i = 0; i < jointArticulationBodies.Length; i++)
         {
             joints.joints[i] = this.jointArticulationBodies[i].jointPosition[0];
         }
         request.joints_input = joints;
-
+        /*
         request.joints_input.goal_pose = new PoseMsg
         {
             position = goal.transform.position.To<FLU>(),
             orientation = Quaternion.Euler(Mathf.PI, 0, 0).To<FLU>()
-        };
+        };*/
 
         this.rc.SendServiceMessage<MoverServiceResponse>(ServiceName, request, TrajectoryResponse);
     }
@@ -62,7 +63,7 @@ public void Publish()
     {
         foreach (var t in response.trajectory.joint_trajectory.points)
         {
-            float[] result = new float[4];
+            float[] result = new float[6];
             for (var i = 0; i < t.positions.Length; i++)
             {
                 result[i] = (float)t.positions[i] * Mathf.Rad2Deg;
