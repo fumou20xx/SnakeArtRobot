@@ -14,7 +14,7 @@ public class TrajectoryPlanner : MonoBehaviour
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
     public ArticulationBody[] jointArticulationBodies;
-    public GameObject goal;
+//    public GameObject goal;
     private ROSConnection rc;
 
     void Start()
@@ -35,12 +35,12 @@ public void Publish()
             joints.joints[i] = this.jointArticulationBodies[i].jointPosition[0];
         }
         request.joints_input = joints;
-
+        /*
         request.joints_input.goal_pose = new PoseMsg
         {
             position = goal.transform.position.To<FLU>(),
             orientation = Quaternion.Euler(Mathf.PI, 0, 0).To<FLU>()
-        };
+        };*/
 
         this.rc.SendServiceMessage<MoverServiceResponse>(ServiceName, request, TrajectoryResponse);
     }
