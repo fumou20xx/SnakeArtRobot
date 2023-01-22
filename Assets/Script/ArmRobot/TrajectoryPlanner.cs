@@ -63,7 +63,7 @@ public void Publish()
     {
         foreach (var t in response.trajectory.joint_trajectory.points)
         {
-            float[] result = new float[6];
+            float[] result = new float[5];
             for (var i = 0; i < t.positions.Length; i++)
             {
                 result[i] = (float)t.positions[i] * Mathf.Rad2Deg;
