@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.MyRobotArmService;
+//using RosMessageTypes.SnakeArtRobot;
 using RosMessageTypes.Trajectory;
 using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
