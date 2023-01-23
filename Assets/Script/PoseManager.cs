@@ -18,7 +18,9 @@ namespace com.rfilkov.components
 
         [Tooltip("Model in pose that need to be reached by the user.")]
         // ユーザーが到達する必要があるポーズのモデル。
-        public PoseModelHelper poseModel;
+        //public PoseModelHelper poseModel;
+
+        public List<PoseModelHelper> poseModelList;
 
         [Tooltip("List of joints to compare.")]
         // 比較するジョイントのリスト。
@@ -135,10 +137,24 @@ namespace com.rfilkov.components
                 avatarController = avatarModel.gameObject.GetComponent<AvatarController>();
             }
 
-            if(poseModel)
+            /*if(poseModel)
             {
                 initialPoseRotation = poseModel.transform.rotation;
+            }*/
+
+            initialPoseRotation = Quaternion.identity;
+        }
+
+        private void Start()
+        {
+            foreach (var item in poseModelList)
+            {
+                AddCurrentPoseToSaved(item, Time.realtimeSinceStartup, false);
+                //Destroy(item.gameObject);
             }
+            //poseModelList.Clear();
+
+            
         }
 
 
@@ -153,15 +169,15 @@ namespace com.rfilkov.components
             float fCurrentTime = Time.realtimeSinceStartup;
 
             // 必要に応じて、モデルのポーズを保存します
-            if ((fCurrentTime - lastPoseSavedTime) >= timeBetweenChecks)
+            /*if ((fCurrentTime - lastPoseSavedTime) >= timeBetweenChecks)
             {
                 lastPoseSavedTime = fCurrentTime;
 
                 // 古いポーズを削除して
                 // 現在のポーズを保存
                 RemoveOldSavedPoses(fCurrentTime);
-                AddCurrentPoseToSaved(fCurrentTime, isMirrored);
-            }
+                AddCurrentPoseToSaved(poseModel, fCurrentTime, isMirrored);
+            }*/
 
             if(kinectManager != null && kinectManager.IsInitialized())
             {
@@ -225,10 +241,10 @@ namespace com.rfilkov.components
         }
 
         // 保存されたポーズにposeModelの現在のポーズを追加します
-        private void AddCurrentPoseToSaved(float fCurrentTime, bool isMirrored)
+        private void AddCurrentPoseToSaved(PoseModelHelper model, float fCurrentTime, bool isMirrored)
         {
             KinectManager kinectManager = KinectManager.Instance;
-            if (kinectManager == null || poseModel == null || poseJoints == null)
+            if (kinectManager == null || model == null || poseJoints == null)
                 return;
 
             PoseModelData pose = new PoseModelData();
@@ -237,7 +253,7 @@ namespace com.rfilkov.components
 
             // save model rotation
             // モデルの回転を保存
-            Quaternion poseModelRotation = poseModel.transform.rotation;
+            Quaternion poseModelRotation = model.transform.rotation;
 
             if(avatarController)
             {
@@ -245,7 +261,7 @@ namespace com.rfilkov.components
                 bool isAvatarMirrored = avatarController.mirroredMovement;
 
                 Quaternion userRotation = kinectManager.GetUserOrientation(avatarUserId, !isAvatarMirrored);
-                poseModel.transform.rotation = initialPoseRotation * userRotation;
+                model.transform.rotation = initialPoseRotation * userRotation;
 
             }
 
@@ -257,8 +273,8 @@ namespace com.rfilkov.components
 
                 if (nextJoint != joint && (int)nextJoint >= 0 && (int)nextJoint < jointCount)
                 {
-                    Transform poseTransform1 = poseModel.GetBoneTransform(poseModel.GetBoneIndexByJoint(joint, isMirrored));
-                    Transform poseTransform2 = poseModel.GetBoneTransform(poseModel.GetBoneIndexByJoint(nextJoint, isMirrored));
+                    Transform poseTransform1 = model.GetBoneTransform(model.GetBoneIndexByJoint(joint, isMirrored));
+                    Transform poseTransform2 = model.GetBoneTransform(model.GetBoneIndexByJoint(nextJoint, isMirrored));
 
                     if (poseTransform1 != null && poseTransform2 != null)
                     {
@@ -273,7 +289,7 @@ namespace com.rfilkov.components
 
             // restore model rotation
             // モデルの回転を復元する
-            poseModel.transform.rotation = poseModelRotation;
+            model.transform.rotation = poseModelRotation;
         }
 
 
