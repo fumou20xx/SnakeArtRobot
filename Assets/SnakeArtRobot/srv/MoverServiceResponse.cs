@@ -8,26 +8,26 @@ using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 namespace RosMessageTypes.SnakeArtRobot
 {
     [Serializable]
-    public class ArmServiceResponse : Message
+    public class MoverServiceResponse : Message
     {
-        public const string k_RosMessageName = "snake_art_robot/ArmService";
+        public const string k_RosMessageName = "snake_art_robot/MoverService";
         public override string RosMessageName => k_RosMessageName;
 
         public Moveit.RobotTrajectoryMsg trajectory;
 
-        public ArmServiceResponse()
+        public MoverServiceResponse()
         {
             this.trajectory = new Moveit.RobotTrajectoryMsg();
         }
 
-        public ArmServiceResponse(Moveit.RobotTrajectoryMsg trajectory)
+        public MoverServiceResponse(Moveit.RobotTrajectoryMsg trajectory)
         {
             this.trajectory = trajectory;
         }
 
-        public static ArmServiceResponse Deserialize(MessageDeserializer deserializer) => new ArmServiceResponse(deserializer);
+        public static MoverServiceResponse Deserialize(MessageDeserializer deserializer) => new MoverServiceResponse(deserializer);
 
-        private ArmServiceResponse(MessageDeserializer deserializer)
+        private MoverServiceResponse(MessageDeserializer deserializer)
         {
             this.trajectory = Moveit.RobotTrajectoryMsg.Deserialize(deserializer);
         }
@@ -39,7 +39,7 @@ namespace RosMessageTypes.SnakeArtRobot
 
         public override string ToString()
         {
-            return "ArmServiceResponse: " +
+            return "MoverServiceResponse: " +
             "\ntrajectory: " + trajectory.ToString();
         }
 

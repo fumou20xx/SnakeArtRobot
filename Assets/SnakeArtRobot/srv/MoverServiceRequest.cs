@@ -5,12 +5,12 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.MyRobotArmServiceTest
+namespace RosMessageTypes.SnakeArtRobot
 {
     [Serializable]
     public class MoverServiceRequest : Message
     {
-        public const string k_RosMessageName = "my_robot_arm_service_test/MoverService";
+        public const string k_RosMessageName = "snake_art_robot/MoverService";
         public override string RosMessageName => k_RosMessageName;
 
         public MyRobotArmMoveitJointsMsg joints_input;

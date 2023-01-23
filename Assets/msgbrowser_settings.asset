@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c444d6f85828f1b4f9b89c7c387f9ddd, type: 3}
   m_Name: msgbrowser_settings
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   inputPath: C:/Users/1911127/ros1_ws/src/snake_art_robot
+=======
+  inputPath: C:/Users/saomi/ros1_ws/my_robot_arm_service
+>>>>>>> cc45342cd7ed4c8250e86259134f9d23445a6d93
   relativeOutPath: 

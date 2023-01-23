@@ -4,31 +4,30 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
-using RosMessageTypes.MyRobotArmServiceTest;
 
-namespace RosMessageTypes.SnakeArtRobot
+namespace RosMessageTypes.MyRobotArmService
 {
     [Serializable]
-    public class ArmServiceRequest : Message
+    public class MoverServiceRequest : Message
     {
-        public const string k_RosMessageName = "snake_art_robot/ArmService";
+        public const string k_RosMessageName = "my_robot_arm_service/MoverService";
         public override string RosMessageName => k_RosMessageName;
 
         public MyRobotArmMoveitJointsMsg joints_input;
 
-        public ArmServiceRequest()
+        public MoverServiceRequest()
         {
             this.joints_input = new MyRobotArmMoveitJointsMsg();
         }
 
-        public ArmServiceRequest(MyRobotArmMoveitJointsMsg joints_input)
+        public MoverServiceRequest(MyRobotArmMoveitJointsMsg joints_input)
         {
             this.joints_input = joints_input;
         }
 
-        public static ArmServiceRequest Deserialize(MessageDeserializer deserializer) => new ArmServiceRequest(deserializer);
+        public static MoverServiceRequest Deserialize(MessageDeserializer deserializer) => new MoverServiceRequest(deserializer);
 
-        private ArmServiceRequest(MessageDeserializer deserializer)
+        private MoverServiceRequest(MessageDeserializer deserializer)
         {
             this.joints_input = MyRobotArmMoveitJointsMsg.Deserialize(deserializer);
         }
@@ -40,7 +39,7 @@ namespace RosMessageTypes.SnakeArtRobot
 
         public override string ToString()
         {
-            return "ArmServiceRequest: " +
+            return "MoverServiceRequest: " +
             "\njoints_input: " + joints_input.ToString();
         }
 
