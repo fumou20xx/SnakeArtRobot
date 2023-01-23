@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using RosMessageTypes.Geometry;
-using RosMessageTypes.SnakeArtRobot;
-//using RosMessageTypes.MyRobotArmService;
+//using RosMessageTypes.SnakeArtRobot;
+using RosMessageTypes.MyRobotArmService;
 using RosMessageTypes.Trajectory;
 using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
@@ -23,7 +23,7 @@ public class TrajectoryPlanner : MonoBehaviour
         this.rc = ROSConnection.GetOrCreateInstance();
 
         this.rc.RegisterRosService<MoverServiceRequest, MoverServiceResponse>(ServiceName);
-        Publish();
+        //Publish();
     }
 
 public void Publish()
