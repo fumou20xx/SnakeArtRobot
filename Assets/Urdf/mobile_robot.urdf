@@ -1,7 +1,16 @@
 <?xml version="1.0" ?>
 <robot name="mobile_robot">
-	
+
+ 
   <!--basefootprint-->
+  <link name="base_footprint"/>   
+  <joint name="base_joint" type="fixed">
+    <origin xyz="0 0 0.126"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+
+  <!--baselink-->	  
   <link name="base_link">
     <!--visuarise-->
     <visual>
@@ -136,6 +145,14 @@
     <child link="right_wheel_2"/>
     <origin rpy="-1.5708 0 0" xyz="-0.09 -0.125 -.09"/>
   </joint>
+  
+  <!--baselink and basescan joint-->
+  <joint name="scan_joint" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0 0 0.2"/>
+    <parent link="base_link"/>
+    <child link="base_scan"/>
+  </joint>
 
   <!--setting powered by sensor-->
     <link name="base_scan">
@@ -160,13 +177,6 @@
         <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
       </inertial>
     </link>
-    <!--baselink and sensor_link joint-->
-    <joint name="sensor_joint" type="fixed">
-      <axis xyz="0 1 0"/>
-      <origin xyz="0 0 0.2" rpy="0 0 0"/>
-      <parent link="base_link"/>
-      <child link="base_scan"/>
-    </joint>
 
 </robot>
 
