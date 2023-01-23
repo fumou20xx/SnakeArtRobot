@@ -13,14 +13,14 @@ namespace RosMessageTypes.SnakeArtRobot
         public const string k_RosMessageName = "snake_art_robot/ArmMoverService1";
         public override string RosMessageName => k_RosMessageName;
 
-        public MyRobotArmMoveitJointsMsg joints_input;
+        public RobotArmMoveitJoints1Msg joints_input;
 
         public ArmMoverService1Request()
         {
-            this.joints_input = new MyRobotArmMoveitJointsMsg();
+            this.joints_input = new RobotArmMoveitJoints1Msg();
         }
 
-        public ArmMoverService1Request(MyRobotArmMoveitJointsMsg joints_input)
+        public ArmMoverService1Request(RobotArmMoveitJoints1Msg joints_input)
         {
             this.joints_input = joints_input;
         }
@@ -29,7 +29,7 @@ namespace RosMessageTypes.SnakeArtRobot
 
         private ArmMoverService1Request(MessageDeserializer deserializer)
         {
-            this.joints_input = MyRobotArmMoveitJointsMsg.Deserialize(deserializer);
+            this.joints_input = RobotArmMoveitJoints1Msg.Deserialize(deserializer);
         }
 
         public override void SerializeTo(MessageSerializer serializer)
