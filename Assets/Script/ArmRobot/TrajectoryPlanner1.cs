@@ -9,9 +9,9 @@ using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using Unity.Robotics.UrdfImporter;
 using UnityEngine;
 
-public class TrajectoryPlanner : MonoBehaviour
+public class TrajectoryPlanner1 : MonoBehaviour
 {
-    private static readonly string ServiceName = "/my_robot_arm_server";
+    private static readonly string ServiceName = "/robot_arm_server";
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
     public ArticulationBody[] jointArticulationBodies;
