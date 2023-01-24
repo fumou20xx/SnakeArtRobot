@@ -23,7 +23,7 @@ public class TrajectoryPlanner : MonoBehaviour
         this.rc = ROSConnection.GetOrCreateInstance();
 
         this.rc.RegisterRosService<MoverServiceRequest, MoverServiceResponse>(ServiceName);
-        Publish();
+        //Publish();
     }
 
     public void Publish()
