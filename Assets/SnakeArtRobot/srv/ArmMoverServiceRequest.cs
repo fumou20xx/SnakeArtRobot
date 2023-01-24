@@ -5,31 +5,31 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.SnakeArtRobot
+namespace RosMessageTypes.SnakeArtRobot.Arm
 {
     [Serializable]
-    public class ArmMoverService1Request : Message
+    public class ArmMoverServiceRequest : Message
     {
-        public const string k_RosMessageName = "snake_art_robot/ArmMoverService1";
+        public const string k_RosMessageName = "snake_art_robot/ArmMoverService";
         public override string RosMessageName => k_RosMessageName;
 
-        public RobotArmMoveitJoints1Msg joints_input;
+        public RobotArmMoveitJointsMsg joints_input;
 
-        public ArmMoverService1Request()
+        public ArmMoverServiceRequest()
         {
-            this.joints_input = new RobotArmMoveitJoints1Msg();
+            this.joints_input = new RobotArmMoveitJointsMsg();
         }
 
-        public ArmMoverService1Request(RobotArmMoveitJoints1Msg joints_input)
+        public ArmMoverServiceRequest(RobotArmMoveitJointsMsg joints_input)
         {
             this.joints_input = joints_input;
         }
 
-        public static ArmMoverService1Request Deserialize(MessageDeserializer deserializer) => new ArmMoverService1Request(deserializer);
+        public static ArmMoverServiceRequest Deserialize(MessageDeserializer deserializer) => new ArmMoverServiceRequest(deserializer);
 
-        private ArmMoverService1Request(MessageDeserializer deserializer)
+        private ArmMoverServiceRequest(MessageDeserializer deserializer)
         {
-            this.joints_input = RobotArmMoveitJoints1Msg.Deserialize(deserializer);
+            this.joints_input = RobotArmMoveitJointsMsg.Deserialize(deserializer);
         }
 
         public override void SerializeTo(MessageSerializer serializer)
@@ -39,7 +39,7 @@ namespace RosMessageTypes.SnakeArtRobot
 
         public override string ToString()
         {
-            return "ArmMoverService1Request: " +
+            return "ArmMoverServiceRequest: " +
             "\njoints_input: " + joints_input.ToString();
         }
 

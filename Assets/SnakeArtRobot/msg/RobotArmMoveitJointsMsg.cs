@@ -5,34 +5,34 @@ using System.Collections.Generic;
 using System.Text;
 using Unity.Robotics.ROSTCPConnector.MessageGeneration;
 
-namespace RosMessageTypes.SnakeArtRobot
+namespace RosMessageTypes.SnakeArtRobot.Arm
 {
     [Serializable]
-    public class RobotArmMoveitJoints1Msg : Message
+    public class RobotArmMoveitJointsMsg : Message
     {
-        public const string k_RosMessageName = "snake_art_robot/RobotArmMoveitJoints1";
+        public const string k_RosMessageName = "snake_art_robot/RobotArmMoveitJoints";
         public override string RosMessageName => k_RosMessageName;
 
         public double[] joints;
         public Geometry.PoseMsg goal_pose;
 
-        public RobotArmMoveitJoints1Msg()
+        public RobotArmMoveitJointsMsg()
         {
-            this.joints = new double[5];
+            this.joints = new double[7];
             this.goal_pose = new Geometry.PoseMsg();
         }
 
-        public RobotArmMoveitJoints1Msg(double[] joints, Geometry.PoseMsg goal_pose)
+        public RobotArmMoveitJointsMsg(double[] joints, Geometry.PoseMsg goal_pose)
         {
             this.joints = joints;
             this.goal_pose = goal_pose;
         }
 
-        public static RobotArmMoveitJoints1Msg Deserialize(MessageDeserializer deserializer) => new RobotArmMoveitJoints1Msg(deserializer);
+        public static RobotArmMoveitJointsMsg Deserialize(MessageDeserializer deserializer) => new RobotArmMoveitJointsMsg(deserializer);
 
-        private RobotArmMoveitJoints1Msg(MessageDeserializer deserializer)
+        private RobotArmMoveitJointsMsg(MessageDeserializer deserializer)
         {
-            deserializer.Read(out this.joints, sizeof(double), 5);
+            deserializer.Read(out this.joints, sizeof(double), 7);
             this.goal_pose = Geometry.PoseMsg.Deserialize(deserializer);
         }
 
@@ -44,7 +44,7 @@ namespace RosMessageTypes.SnakeArtRobot
 
         public override string ToString()
         {
-            return "RobotArmMoveitJoints1Msg: " +
+            return "RobotArmMoveitJointsMsg: " +
             "\njoints: " + System.String.Join(", ", joints.ToList()) +
             "\ngoal_pose: " + goal_pose.ToString();
         }
