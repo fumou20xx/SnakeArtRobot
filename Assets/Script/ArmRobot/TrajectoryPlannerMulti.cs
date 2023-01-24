@@ -22,7 +22,7 @@ public class TrajectoryPlannerMulti : MonoBehaviour
         this.rc = ROSConnection.GetOrCreateInstance();
 
         this.rc.RegisterRosService<ArmMoverServiceRequest, ArmMoverServiceResponse>(ServiceName);
-        Publish();
+        //Publish();
     }
 
     public void Publish()
