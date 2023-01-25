@@ -59,7 +59,6 @@ public class MutualConnect : MonoBehaviour
 
         request.msg = judgeMsg;
         Debug.Log("request.msg =" + request.msg);
-        Publish();
 
         // ROSサーバーへのリクエスト送信
         this.rc.SendServiceMessage<MyServiceResponse>(ServiceName, request, SAResponse);
@@ -81,7 +80,6 @@ public class MutualConnect : MonoBehaviour
     // デバッグ用起床判定
     private void InputKeyNumber()
     {
-        
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             judgeMsg = "get up";

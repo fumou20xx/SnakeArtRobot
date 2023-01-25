@@ -57,6 +57,7 @@ namespace RosMessageTypes.SnakeArtRobot.Arm
         public static void Register()
         {
             MessageRegistry.Register(k_RosMessageName, Deserialize);
+            
         }
     }
 }
