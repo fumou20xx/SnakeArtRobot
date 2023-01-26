@@ -14,6 +14,8 @@ public class TrajectoryPlanner : MonoBehaviour
     private static readonly string ServiceName = "/arm0/my_robot_arm_server";
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
+    //private bool getUpJudge;
+
     public ArticulationBody[] jointArticulationBodies;
 //    public GameObject goal;
     private ROSConnection rc;
@@ -23,7 +25,24 @@ public class TrajectoryPlanner : MonoBehaviour
         this.rc = ROSConnection.GetOrCreateInstance();
 
         this.rc.RegisterRosService<MoverServiceRequest, MoverServiceResponse>(ServiceName);
-        Publish();
+        //Publish();
+        
+        // PoseManagerにアクセス
+        //poseManager = pose.GetComponent<PoseManager>();
+
+        var debugNumberKey = new DebugNumberKey();
+
+        // 起きたら(getUpJudgeがTrueに変化した時だけ)ROSにリクエストを送る
+        //this.ObserveEveryValueChanged(x => x.getUpJudge)
+            //.Where(x => x).Subscribe(_ => GetUpPublish());
+    }
+
+    void Update()
+    {
+        // デバッグ用起床判定呼び出し
+        InputKeyNumber();
+
+        //getUpJudge = poseManager.GetUpJudge();
     }
 
     public void Publish()
@@ -83,4 +102,23 @@ public class TrajectoryPlanner : MonoBehaviour
         
     }
 
+
+    // デバッグ用起床判定
+    public void InputKeyNumber()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            Publish();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            Publish();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            Publish();
+        }
+    }
 }
