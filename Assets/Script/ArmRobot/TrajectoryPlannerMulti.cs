@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class TrajectoryPlannerMulti : MonoBehaviour
 {
-    private static readonly string ServiceName = "/robot_arm_server";
+    private static readonly string ServiceName = "/arm1/robot_arm_server";
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
     public ArticulationBody[] jointArticulationBodies;
@@ -36,7 +36,8 @@ public class TrajectoryPlannerMulti : MonoBehaviour
             joints.joints[i] = this.jointArticulationBodies[i].jointPosition[0];
         }
         request.joints_input = joints;
-
+        
+        Debug.Log(request);
         this.rc.SendServiceMessage<ArmMoverServiceResponse>(ServiceName, request, TrajectoryResponse);
     }
 
