@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class TrajectoryPlanner : MonoBehaviour
 {
-    private static readonly string ServiceName = "/my_robot_arm_server";
+    private static readonly string ServiceName = "/arm0/my_robot_arm_server";
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
     public ArticulationBody[] jointArticulationBodies;
