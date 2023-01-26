@@ -18,6 +18,8 @@ public class MutualConnect : MonoBehaviour
     //public GameObject pose;
     private PoseManager poseManager;
 
+    private DebugNumberKey debugNumberKey;
+
     private ROSConnection rc;
     private string judgeMsg;
 
@@ -34,6 +36,9 @@ public class MutualConnect : MonoBehaviour
         // PoseManagerにアクセス
         //poseManager = pose.GetComponent<PoseManager>();
 
+        //インスタンス生成
+        var debugNumberKey =  new DebugNumberKey();
+
         // デバッグ用
         Debug.Log("1、2、3を押すと起床");
 
@@ -45,7 +50,8 @@ public class MutualConnect : MonoBehaviour
     void Update()
     {
         // デバッグ用起床判定呼び出し
-        InputKeyNumber();
+        debugNumberKey.InputKeyNumber();
+        Publish();
 
         //getUpJudge = poseManager.GetUpJudge();
     }
@@ -78,24 +84,5 @@ public class MutualConnect : MonoBehaviour
     }
 
     // デバッグ用起床判定
-    private void InputKeyNumber()
-    {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            judgeMsg = "get up";
-            Publish();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            judgeMsg = "get up";
-            Publish();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            judgeMsg = "get up";
-            Publish();
-        }
-    }
+    private DebugNumberKey DebugNumberKey; 
 }
