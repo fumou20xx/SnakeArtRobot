@@ -1,43 +1,45 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.SnakeArtRobot;
-//using RosMessageTypes.MyRobotArmService;
-using RosMessageTypes.Trajectory;
 using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using Unity.Robotics.UrdfImporter;
-using UnityEngine;
+using RosMessageTypes.Actionlib;
 
-public class TrajectoryPlanner : MonoBehaviour
+public class arm_mover_action : MonoBehaviour
 {
     private static readonly string ServiceName = "/arm0/my_robot_arm_server";
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
+
     public ArticulationBody[] jointArticulationBodies;
     private ROSConnection rc;
 
+    // Start is called before the first frame update
     void Start()
     {
+        //ROSコネクションの準備
         this.rc = ROSConnection.GetOrCreateInstance();
 
         this.rc.RegisterRosService<MoverServiceRequest, MoverServiceResponse>(ServiceName);
         Publish();
-        
+
         // PoseManagerにアクセス
         //poseManager = pose.GetComponent<PoseManager>();
-
+        
         // 起きたら(getUpJudgeがTrueに変化した時だけ)ROSにリクエストを送る
         //this.ObserveEveryValueChanged(x => x.getUpJudge)
-            //.Where(x => x).Subscribe(_ => GetUpPublish());
+        //.Where(x => x).Subscribe(_ => GetUpPublish());
     }
 
+    // Update is called once per frame
     void Update()
     {
         // デバッグ用起床判定呼び出し
         InputKeyNumber();
-
-        //getUpJudge = poseManager.GetUpJudge();
     }
 
     public void Publish()
@@ -46,7 +48,7 @@ public class TrajectoryPlanner : MonoBehaviour
 
         var joints = new MyRobotArmMoveitJointsMsg();
 
-        for(var i = 0; i < jointArticulationBodies.Length; i++)
+        for (var i = 0; i < jointArticulationBodies.Length; i++)
         {
             joints.joints[i] = this.jointArticulationBodies[i].jointPosition[0];
         }
@@ -57,7 +59,7 @@ public class TrajectoryPlanner : MonoBehaviour
 
     void TrajectoryResponse(MoverServiceResponse response)
     {
-        if(response.trajectory != null && response.trajectory.joint_trajectory.points.Length > 0)
+        if (response.trajectory != null && response.trajectory.joint_trajectory.points.Length > 0)
         {
             print("success>>>");
             StartCoroutine(ExecuteTrajectories(response));
@@ -67,7 +69,6 @@ public class TrajectoryPlanner : MonoBehaviour
             print("failed>>>");
         }
     }
-
 
     IEnumerator ExecuteTrajectories(MoverServiceResponse response)
     {
@@ -88,9 +89,8 @@ public class TrajectoryPlanner : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(0.1f);
-        
-    }
 
+    }
 
     // デバッグ用起床判定
     public void InputKeyNumber()
@@ -110,4 +110,5 @@ public class TrajectoryPlanner : MonoBehaviour
             Publish();
         }
     }
+
 }
