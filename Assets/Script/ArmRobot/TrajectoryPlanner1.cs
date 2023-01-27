@@ -27,8 +27,6 @@ public class TrajectoryPlanner1 : MonoBehaviour
         // PoseManagerにアクセス
         //poseManager = pose.GetComponent<PoseManager>();
 
-        var debugNumberKey = new DebugNumberKey();
-
         // 起きたら(getUpJudgeがTrueに変化した時だけ)ROSにリクエストを送る
         //this.ObserveEveryValueChanged(x => x.getUpJudge)
             //.Where(x => x).Subscribe(_ => GetUpPublish());

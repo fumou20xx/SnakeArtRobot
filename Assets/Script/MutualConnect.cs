@@ -15,10 +15,8 @@ public class MutualConnect : MonoBehaviour
     private static readonly string ServiceName = "/snake_art_robot_server";
 
     // メンバ変数
-    //public GameObject pose;
+    public GameObject pose;
     private PoseManager poseManager;
-
-    private DebugNumberKey debugNumberKey;
 
     private ROSConnection rc;
     private string judgeMsg;
@@ -36,9 +34,6 @@ public class MutualConnect : MonoBehaviour
         // PoseManagerにアクセス
         //poseManager = pose.GetComponent<PoseManager>();
 
-        //インスタンス生成
-        var debugNumberKey =  new DebugNumberKey();
-
         // デバッグ用
         Debug.Log("1、2、3を押すと起床");
 
@@ -50,8 +45,7 @@ public class MutualConnect : MonoBehaviour
     void Update()
     {
         // デバッグ用起床判定呼び出し
-        debugNumberKey.InputKeyNumber();
-        Publish();
+        InputKeyNumber();
 
         //getUpJudge = poseManager.GetUpJudge();
     }
@@ -75,14 +69,33 @@ public class MutualConnect : MonoBehaviour
         Debug.Log(response.res); 
     }
 
-    // ROSにリクエストを送る
+    // 起床時ROSにリクエストを送る
     private void GetUpPublish()
     {
         judgeMsg = "get up";
         Publish();
-        Debug.Log("a");
+        //Debug.Log("a");
     }
 
     // デバッグ用起床判定
-    private DebugNumberKey DebugNumberKey; 
+    private void InputKeyNumber()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            judgeMsg = "get up";
+            Publish();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            judgeMsg = "get up";
+            Publish();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            judgeMsg = "get up";
+            Publish();
+        }
+    }
 }
