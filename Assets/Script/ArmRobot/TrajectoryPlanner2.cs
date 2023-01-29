@@ -9,9 +9,9 @@ using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using Unity.Robotics.UrdfImporter;
 using UnityEngine;
 
-public class TrajectoryPlannerMulti : MonoBehaviour
+public class TrajectoryPlanner2 : MonoBehaviour
 {
-    private static readonly string ServiceName = "/arm1/robot_arm_server";
+    private static readonly string ServiceName = "/arm2/robot_arm_server";
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
     public ArticulationBody[] jointArticulationBodies;
@@ -22,7 +22,21 @@ public class TrajectoryPlannerMulti : MonoBehaviour
         this.rc = ROSConnection.GetOrCreateInstance();
 
         this.rc.RegisterRosService<ArmMoverServiceRequest, ArmMoverServiceResponse>(ServiceName);
-        Publish();
+        
+        // PoseManagerにアクセス
+        //poseManager = pose.GetComponent<PoseManager>();
+
+        // 起きたら(getUpJudgeがTrueに変化した時だけ)ROSにリクエストを送る
+        //this.ObserveEveryValueChanged(x => x.getUpJudge)
+            //.Where(x => x).Subscribe(_ => GetUpPublish());
+    }
+
+    void Update()
+    {
+        // デバッグ用起床判定呼び出し
+        InputKeyNumber();
+
+        //getUpJudge = poseManager.GetUpJudge();
     }
 
     public void Publish()
@@ -36,14 +50,13 @@ public class TrajectoryPlannerMulti : MonoBehaviour
             joints.joints[i] = this.jointArticulationBodies[i].jointPosition[0];
         }
         request.joints_input = joints;
-        
-        Debug.Log(request);
+
         this.rc.SendServiceMessage<ArmMoverServiceResponse>(ServiceName, request, TrajectoryResponse);
     }
 
-    private void TrajectoryResponse(ArmMoverServiceResponse response)
+    void TrajectoryResponse(ArmMoverServiceResponse response)
     {
-        if (response.trajectory != null && response.trajectory.joint_trajectory.points.Length > 0)
+        if(response.trajectory != null && response.trajectory.joint_trajectory.points.Length > 0)
         {
             print("success>>>");
             StartCoroutine(ExecuteTrajectories(response));
@@ -54,11 +67,12 @@ public class TrajectoryPlannerMulti : MonoBehaviour
         }
     }
 
-    private IEnumerator ExecuteTrajectories(ArmMoverServiceResponse response)
+
+    IEnumerator ExecuteTrajectories(ArmMoverServiceResponse response)
     {
         foreach (var t in response.trajectory.joint_trajectory.points)
         {
-            float[] result = new float[8];
+            float[] result = new float[6];
             for (var i = 0; i < t.positions.Length; i++)
             {
                 result[i] = (float)t.positions[i] * Mathf.Rad2Deg;
@@ -73,6 +87,25 @@ public class TrajectoryPlannerMulti : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(0.1f);
+        
     }
 
+    // デバッグ用起床判定
+    public void InputKeyNumber()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            Publish();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            Publish();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            Publish();
+        }
+    }
 }

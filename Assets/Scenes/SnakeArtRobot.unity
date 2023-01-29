@@ -7646,13 +7646,14 @@ GameObject:
   - component: {fileID: 595098369}
   - component: {fileID: 595098368}
   - component: {fileID: 595098367}
+  - component: {fileID: 595098370}
   m_Layer: 0
   m_Name: robot_arm_1
   m_TagString: robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &595098367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7708,6 +7709,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: -60, z: 0}
+--- !u!114 &595098370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595098366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a059369f7e12d44e945c7521f194875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jointArticulationBodies:
+  - {fileID: 794232778}
+  - {fileID: 1601170388}
+  - {fileID: 49621559}
+  - {fileID: 1662572149}
+  - {fileID: 669706543}
 --- !u!1 &597943986
 GameObject:
   m_ObjectHideFlags: 0
@@ -18965,7 +18984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1385593801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20612,7 +20631,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2f7f80218b60aad43a8cdd1dfbbd193d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f7f80218b60aad43a8cdd1dfbbd193d, type: 3}
@@ -25338,13 +25357,14 @@ GameObject:
   - component: {fileID: 1841009138}
   - component: {fileID: 1841009137}
   - component: {fileID: 1841009136}
+  - component: {fileID: 1841009139}
   m_Layer: 0
   m_Name: robot_arm_2
   m_TagString: robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1841009136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25400,6 +25420,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 65, z: 0}
+--- !u!114 &1841009139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841009135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf92297838cc794ba1f1dcdd7259619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jointArticulationBodies:
+  - {fileID: 2013329045}
+  - {fileID: 497642929}
+  - {fileID: 818822507}
+  - {fileID: 269040489}
+  - {fileID: 586508925}
 --- !u!1 &1841056194
 GameObject:
   m_ObjectHideFlags: 0
@@ -25635,21 +25673,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0118563445, y: 0.01603539, z: 0.002}
   m_Center: {x: -0.002304721, y: 0.00009607802, z: 0.001}
---- !u!138 &1858428000
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858427984}
-  m_ConnectedBody: {fileID: 659738360}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
 --- !u!1 &1861118362
 GameObject:
   m_ObjectHideFlags: 0

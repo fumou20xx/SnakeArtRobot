@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using RosMessageTypes.Geometry;
-using RosMessageTypes.SnakeArtRobot;
+using RosMessageTypes.SnakeArtRobot.Arm;
 //using RosMessageTypes.MyRobotArmService;
 using RosMessageTypes.Trajectory;
 using Unity.Robotics.ROSTCPConnector;
@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class TrajectoryPlanner1 : MonoBehaviour
 {
-    private static readonly string ServiceName = "/arm1/my_robot_arm_server";
+    private static readonly string ServiceName = "/arm1/robot_arm_server";
     private static readonly Quaternion PickOrientation = Quaternion.Euler(90, 90, 0);
 
     public ArticulationBody[] jointArticulationBodies;
@@ -21,8 +21,7 @@ public class TrajectoryPlanner1 : MonoBehaviour
     {
         this.rc = ROSConnection.GetOrCreateInstance();
 
-        this.rc.RegisterRosService<MoverServiceRequest, MoverServiceResponse>(ServiceName);
-        Publish();
+        this.rc.RegisterRosService<ArmMoverServiceRequest, ArmMoverServiceResponse>(ServiceName);
         
         // PoseManagerにアクセス
         //poseManager = pose.GetComponent<PoseManager>();
@@ -42,9 +41,9 @@ public class TrajectoryPlanner1 : MonoBehaviour
 
     public void Publish()
     {
-        var request = new MoverServiceRequest();
+        var request = new ArmMoverServiceRequest();
 
-        var joints = new MyRobotArmMoveitJointsMsg();
+        var joints = new RobotArmMoveitJointsMsg();
 
         for(var i = 0; i < jointArticulationBodies.Length; i++)
         {
@@ -52,10 +51,10 @@ public class TrajectoryPlanner1 : MonoBehaviour
         }
         request.joints_input = joints;
 
-        this.rc.SendServiceMessage<MoverServiceResponse>(ServiceName, request, TrajectoryResponse);
+        this.rc.SendServiceMessage<ArmMoverServiceResponse>(ServiceName, request, TrajectoryResponse);
     }
 
-    void TrajectoryResponse(MoverServiceResponse response)
+    void TrajectoryResponse(ArmMoverServiceResponse response)
     {
         if(response.trajectory != null && response.trajectory.joint_trajectory.points.Length > 0)
         {
@@ -69,7 +68,7 @@ public class TrajectoryPlanner1 : MonoBehaviour
     }
 
 
-    IEnumerator ExecuteTrajectories(MoverServiceResponse response)
+    IEnumerator ExecuteTrajectories(ArmMoverServiceResponse response)
     {
         foreach (var t in response.trajectory.joint_trajectory.points)
         {
@@ -90,7 +89,6 @@ public class TrajectoryPlanner1 : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         
     }
-
 
     // デバッグ用起床判定
     public void InputKeyNumber()
