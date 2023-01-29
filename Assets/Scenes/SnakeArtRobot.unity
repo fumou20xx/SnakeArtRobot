@@ -8638,6 +8638,7 @@ GameObject:
   - component: {fileID: 659738362}
   - component: {fileID: 659738361}
   - component: {fileID: 659738360}
+  - component: {fileID: 659738365}
   m_Layer: 0
   m_Name: Capsule_1
   m_TagString: Untagged
@@ -8740,6 +8741,21 @@ Transform:
   m_Father: {fileID: 1130160661}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 2.007, y: 0, z: 0}
+--- !u!138 &659738365
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659738359}
+  m_ConnectedBody: {fileID: 1858427995}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &664969395
 GameObject:
   m_ObjectHideFlags: 0
@@ -15599,7 +15615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1130160661
 Transform:
   m_ObjectHideFlags: 0
@@ -25616,8 +25632,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0015300586, y: 0.001628374, z: 0.002}
-  m_Center: {x: -0.009234925, y: -0.013495001, z: 0.001}
+  m_Size: {x: 0.0025132291, y: 0.00319137, z: 0.002}
+  m_Center: {x: -0.008743331, y: -0.012713493, z: 0.001}
 --- !u!65 &1858427994
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25629,8 +25645,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.001603201, y: 0.0015896908, z: 0.0018650077}
-  m_Center: {x: 0.0090195155, y: 0.00020731108, z: 0.00093250384}
+  m_Size: {x: 0.002590654, y: 0.0040434524, z: 0.0018650077}
+  m_Center: {x: 0.008525786, y: 0.00020731057, z: 0.00093250384}
 --- !u!54 &1858427995
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25643,7 +25659,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -25658,8 +25674,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0015300586, y: 0.0016243993, z: 0.002}
-  m_Center: {x: -0.009234925, y: 0.013361632, z: 0.001}
+  m_Size: {x: 0.0024529744, y: 0.0033963984, z: 0.002}
+  m_Center: {x: -0.008880876, y: 0.012535362, z: 0.001}
 --- !u!65 &1858427999
 BoxCollider:
   m_ObjectHideFlags: 0
