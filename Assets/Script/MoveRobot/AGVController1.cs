@@ -5,9 +5,9 @@ using Unity.Robotics.UrdfImporter.Control;
 
 namespace RosSharp.Control
 {
-    public enum ControlMode { Keyboard, ROS};
+    public enum ControlMode1 { Keyboard, ROS};
 
-    public class AGVController : MonoBehaviour
+    public class AGVController1 : MonoBehaviour
     {
         public GameObject wheel1;
         public GameObject wheel2;
@@ -38,7 +38,7 @@ namespace RosSharp.Control
             SetParameters(wA1);
             SetParameters(wA2);
             ros = ROSConnection.GetOrCreateInstance();
-            ros.Subscribe<TwistMsg>("cmd_vel", ReceiveROSCmd);
+            ros.Subscribe<TwistMsg>("cmd_vel1", ReceiveROSCmd);
         }
 
         void ReceiveROSCmd(TwistMsg cmdVel)

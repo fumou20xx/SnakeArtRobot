@@ -5,9 +5,9 @@ using Unity.Robotics.UrdfImporter.Control;
 
 namespace RosSharp.Control
 {
-    public enum ControlMode { Keyboard, ROS};
+    public enum ControlMode3 { Keyboard, ROS};
 
-    public class AGVController : MonoBehaviour
+    public class AGVController3 : MonoBehaviour
     {
         public GameObject wheel1;
         public GameObject wheel2;
