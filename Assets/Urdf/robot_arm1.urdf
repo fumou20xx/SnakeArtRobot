@@ -14,7 +14,9 @@
             <geometry>
                 <box size="0.4 0.4 0.1" />
             </geometry>
-            <color rgba="0.011 0.172 0.074 1.0" />
+            <material name="white">
+                <color rgba="1.0 1.0 1.0 1.0" />
+            </material>
             <origin rpy="0 0 0" xyz="0 0 0.05" />
         </visual>
         <!--collisionattribute-->
@@ -46,7 +48,7 @@
             <geometry>
                 <cylinder length="0.2" radius="0.1" />
             </geometry>
-            <color rgba="0.011 0.172 0.074 1.0" />
+            <material name="white" />
             <origin rpy="0 0 0" xyz="0 0 0.1" />
         </visual>
         <!--collisionattribute-->
@@ -79,7 +81,7 @@
             <geometry>
                 <cylinder length="2.5" radius="0.1" />
             </geometry>
-            <color rgba="0.011 0.172 0.074 1.0" />
+            <material name="white" />
             <origin rpy="0 0 0" xyz="0 0 1.25" />
         </visual>
         <!--collisionattribute-->
@@ -112,7 +114,7 @@
             <geometry>
                 <cylinder length="2.5" radius="0.1" />
             </geometry>
-            <color rgba="0.011 0.172 0.074 1.0" />
+            <material name="white" />
             <origin rpy="0 0 0" xyz="0 0 1.25" />
         </visual>
         <!--collisionattribute-->
@@ -145,7 +147,7 @@
             <geometry>
                 <cylinder length="0.2" radius="0.1" />
             </geometry>
-            <color rgba="0.011 0.172 0.074 1.0" />
+            <material name="white" />
             <origin rpy="0 0 0" xyz="0 0 0.1" />
         </visual>
         <!--collisionattribute-->
@@ -177,7 +179,9 @@
             <geometry>
                 <box size="0.4 0.4 0.1" />
             </geometry>
-            <color rgba="0.011 0.172 0.074 1.0" />
+            <material name="white">
+                <color rgba="1.0 1.0 1.0 1.0" />
+            </material>
             <origin rpy="0 0 0" xyz="0 0 0.05" />
         </visual>
         <!--collisionattribute-->

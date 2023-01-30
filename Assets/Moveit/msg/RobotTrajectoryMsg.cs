@@ -10,7 +10,7 @@ namespace RosMessageTypes.Moveit
     [Serializable]
     public class RobotTrajectoryMsg : Message
     {
-        public const string k_RosMessageName = "moveit_msgs/RobotTrajectory";
+        public const string k_RosMessageName = "arm1/moveit_msgs/RobotTrajectory";
         public override string RosMessageName => k_RosMessageName;
 
         public Trajectory.JointTrajectoryMsg joint_trajectory;

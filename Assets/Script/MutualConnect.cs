@@ -15,7 +15,7 @@ public class MutualConnect : MonoBehaviour
     private static readonly string ServiceName = "/snake_art_robot_server";
 
     // メンバ変数
-    //public GameObject pose;
+    public GameObject pose;
     private PoseManager poseManager;
 
     private ROSConnection rc;
@@ -69,12 +69,12 @@ public class MutualConnect : MonoBehaviour
         Debug.Log(response.res); 
     }
 
-    // ROSにリクエストを送る
+    // 起床時ROSにリクエストを送る
     private void GetUpPublish()
     {
         judgeMsg = "get up";
         Publish();
-        Debug.Log("a");
+        //Debug.Log("a");
     }
 
     // デバッグ用起床判定
