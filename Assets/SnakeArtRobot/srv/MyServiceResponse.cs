@@ -13,14 +13,14 @@ namespace RosMessageTypes.SnakeArtRobot
         public const string k_RosMessageName = "snake_art_robot/MyService";
         public override string RosMessageName => k_RosMessageName;
 
-        public int res;
+        public string res;
 
         public MyServiceResponse()
         {
-            this.res = 0;
+            this.res = "";
         }
 
-        public MyServiceResponse(int res)
+        public MyServiceResponse(string res)
         {
             this.res = res;
         }

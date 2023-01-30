@@ -5504,7 +5504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &595098367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5572,12 +5572,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2d1797955339d4ab69943eec50c8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointArticulationBodies:
-  - {fileID: 794232778}
-  - {fileID: 1601170388}
-  - {fileID: 49621559}
-  - {fileID: 1662572149}
-  - {fileID: 669706543}
 --- !u!1 &597943986
 GameObject:
   m_ObjectHideFlags: 0
@@ -7865,7 +7859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &743285066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15545,7 +15539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1385593801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19013,7 +19007,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 0.1
-  m_ParentAnchorPosition: {x: 0, y: 0, z: 0}
+  m_ParentAnchorPosition: {x: 0, y: 0.2, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
@@ -19947,7 +19941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1841009136
 MonoBehaviour:
   m_ObjectHideFlags: 0
