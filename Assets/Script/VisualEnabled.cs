@@ -8,12 +8,12 @@ public class VisualEnabled : MonoBehaviour
     [SerializeField] private Renderer avaterModel;
 
     // ポーズが保存されているモデル
-    [SerializeField] private Renderer robotModel;
+    //[SerializeField] private Renderer robotModel;
 
     void Start()
     {
         avaterModel.enabled = false;
-        robotModel.enabled = false;
+        //robotModel.enabled = false;
     }
 
 }
