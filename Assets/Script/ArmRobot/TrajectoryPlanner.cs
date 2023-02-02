@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using com.rfilkov.components;
 using RosMessageTypes.Geometry;
 using RosMessageTypes.SnakeArtRobot.Arm;
 //using RosMessageTypes.MyRobotArmService;
 using RosMessageTypes.Trajectory;
+using UniRx;
 using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using Unity.Robotics.UrdfImporter;
@@ -18,6 +20,12 @@ public class TrajectoryPlanner : MonoBehaviour
     public ArticulationBody[] jointArticulationBodies;
     private ROSConnection rc;
 
+    // メンバ変数
+    public GameObject pose;
+    private PoseManager poseManager;
+
+    private bool getUpJudge;
+
     void Start()
     {
         this.rc = ROSConnection.GetOrCreateInstance();
@@ -25,11 +33,11 @@ public class TrajectoryPlanner : MonoBehaviour
         this.rc.RegisterRosService<ArmMoverServiceRequest, ArmMoverServiceResponse>(ServiceName);
         
         // PoseManagerにアクセス
-        //poseManager = pose.GetComponent<PoseManager>();
+        poseManager = pose.GetComponent<PoseManager>();
 
         // 起きたら(getUpJudgeがTrueに変化した時だけ)ROSにリクエストを送る
-        //this.ObserveEveryValueChanged(x => x.getUpJudge)
-            //.Where(x => x).Subscribe(_ => GetUpPublish());
+        this.ObserveEveryValueChanged(x => x.getUpJudge)
+            .Where(x => x).Subscribe(_ => GetUpPublish());
     }
 
     void Update()
@@ -37,7 +45,7 @@ public class TrajectoryPlanner : MonoBehaviour
         // デバッグ用起床判定呼び出し
         InputKeyNumber();
 
-        //getUpJudge = poseManager.GetUpJudge();
+        getUpJudge = poseManager.GetUpJudge();
     }
 
     public void Publish()
@@ -89,6 +97,13 @@ public class TrajectoryPlanner : MonoBehaviour
         }
         yield return new WaitForSeconds(0.1f);
         
+    }
+
+    // 起床時ROSにリクエストを送る
+    private void GetUpPublish()
+    {
+        Publish();
+        //Debug.Log("a");
     }
 
     // デバッグ用起床判定
