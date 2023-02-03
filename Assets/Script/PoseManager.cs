@@ -199,14 +199,14 @@ namespace com.rfilkov.components
                         infoText.text = sPoseMessage;
 
                         // 起きたかどうかの判定
-                        if (getUpPose == false && fMatchPercent < 0.3f)
+                        if (getUpPose == false && fMatchPercent < 0.4f)
                         {
                             getUpPose = true;
                             Debug.Log(getUpPose + "：起きた");
                         }
 
                         // 寝たかどうかの判定
-                        if (getUpPose == true && fMatchPercent > 0.7f)
+                        if (getUpPose == true && fMatchPercent > 0.6f)
                         {
                             getUpPose = false;
                             Debug.Log(getUpPose + "：寝た");
